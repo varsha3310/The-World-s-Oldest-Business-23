@@ -187,39 +187,6 @@ INNER JOIN countries as cnt
 
 ---
 
-## 🌐 8. Count of Categories by Continent
-
-```sql
-%%sql
-SELECT cnt.continent, cat.category, COUNT(*) AS n
-FROM businesses AS bus
-INNER JOIN categories as cat
-  ON bus.category_code = cat.category_code
-INNER JOIN countries as cnt
-  ON bus.country_code = cnt.country_code
-GROUP BY cnt.continent, cat.category;
-```
-
-🟢 Helps identify continent-specific industry strengths
-(e.g., **Postal Services** dominate in Africa, **Breweries** in Europe)
-
----
-
-## 📉 9. Filtering for Dominant Industry–Continent Pairs
-
-```sql
-%%sql
-SELECT cnt.continent, cat.category, COUNT(*) AS n
-FROM businesses AS bus
-INNER JOIN categories as cat
-  ON bus.category_code = cat.category_code
-INNER JOIN countries as cnt
-  ON bus.country_code = cnt.country_code
-GROUP BY cnt.continent, cat.category
-HAVING COUNT(*) > 5
-ORDER BY n DESC;
-```
-
 🟢 **Filtered Insight**:
 
 * Highlights combinations with substantial presence
